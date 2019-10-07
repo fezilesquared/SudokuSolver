@@ -1,8 +1,0 @@
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\bin\Debug\netcoreapp3.0\Puzzle.deps.json
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\bin\Debug\netcoreapp3.0\Puzzle.dll
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\bin\Debug\netcoreapp3.0\Puzzle.pdb
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\obj\Debug\netcoreapp3.0\Puzzle.csprojAssemblyReference.cache
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\obj\Debug\netcoreapp3.0\Puzzle.AssemblyInfoInputs.cache
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\obj\Debug\netcoreapp3.0\Puzzle.AssemblyInfo.cs
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\obj\Debug\netcoreapp3.0\Puzzle.dll
-C:\Users\fezil\Documents\Repositories\Soduku Solver\Puzzle\obj\Debug\netcoreapp3.0\Puzzle.pdb
