@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 
 namespace PuzzleItems
 {
@@ -19,12 +20,12 @@ namespace PuzzleItems
         }
 
         public Location Location { get; }
-
+        public Puzzle Puzzle { get; set; }
         public CellCollection Column => Location.Column;
         public string ColumnName => Location.Column.Name;
         public CellCollection Row => Location.Row;
-        public string RowName => Location.Row.Name;   
-        
+        public string RowName => Location.Row.Name;
+        public string LocationName => $"Row: {RowName};Column:{ColumnName};Group:{GroupName}";
         public CellCollection Group => Location.Group;
         public string GroupName => Location.Group.Name;
         public int Value { get; private set; }
@@ -35,7 +36,24 @@ namespace PuzzleItems
         {
             if (IsInitialCell) return;
 
-            Value = new Random().Next(1,9);
+            Value = GetGuess();
+        }
+
+        private int GetGuess()
+        {
+            try {
+                return (Location?.RandomAvailableValues.First()).GetValueOrDefault();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }       
+            //return guess == 0 ? -1: guess;
+        }
+
+        internal void ClearGuess()
+        {
+            if (!IsInitialCell) Value = 0;
         }
     }
 }

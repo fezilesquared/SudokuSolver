@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soduku Solver", "Soduku Solver\Soduku Solver.csproj", "{93F0B18B-12BF-4B43-BB85-7635AA3982AC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle", "Puzzle\Puzzle.csproj", "{7F11BD63-6FB4-4DFB-B24F-403A7713D693}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Puzzle", "Test.Puzzle\Test.Puzzle.csproj", "{5372C3C6-8005-44A6-BA32-DDA606CE71E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase", "TestBase\TestBase.csproj", "{11C09AD7-A0E3-4C9A-9025-F2D73EEB362D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBase", "TestBase\TestBase.csproj", "{11C09AD7-A0E3-4C9A-9025-F2D73EEB362D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku Solver", "Sudoku Solver\Sudoku Solver.csproj", "{0ABC1583-E590-4B28-9643-46122625A388}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93F0B18B-12BF-4B43-BB85-7635AA3982AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93F0B18B-12BF-4B43-BB85-7635AA3982AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93F0B18B-12BF-4B43-BB85-7635AA3982AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93F0B18B-12BF-4B43-BB85-7635AA3982AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F11BD63-6FB4-4DFB-B24F-403A7713D693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F11BD63-6FB4-4DFB-B24F-403A7713D693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F11BD63-6FB4-4DFB-B24F-403A7713D693}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{11C09AD7-A0E3-4C9A-9025-F2D73EEB362D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11C09AD7-A0E3-4C9A-9025-F2D73EEB362D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11C09AD7-A0E3-4C9A-9025-F2D73EEB362D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ABC1583-E590-4B28-9643-46122625A388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ABC1583-E590-4B28-9643-46122625A388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ABC1583-E590-4B28-9643-46122625A388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ABC1583-E590-4B28-9643-46122625A388}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

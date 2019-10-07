@@ -17,8 +17,9 @@ namespace PuzzleItems
         public List<Cell> Cells { get; }
  
         public List<int> GetCellValues() => Cells.Select(c => c.Value).ToList();
+        public List<int> AvailableCellValues => RequiredValues.Except(GetCellValues()).ToList();
 
-        public bool IsValid()
+        public virtual bool IsValid()
         {
             return RequiredValues.ToList().All(v => GetCellValues().Contains(v));
         }

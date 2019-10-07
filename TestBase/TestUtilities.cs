@@ -1,6 +1,7 @@
 ﻿using NSubstitute;
 using PuzzleItems;
 using System;
+using System.Collections.Generic;
 
 namespace TestBase
 {
@@ -13,7 +14,9 @@ namespace TestBase
 
         public static Location CreateLocation()
         {
-            return Substitute.For<Location>(Substitute.For<CellCollection>(""), Substitute.For<CellCollection>(""));
+            var location = Substitute.For<Location>(Substitute.For<CellCollection>(""), Substitute.For<CellCollection>(""));
+            location.RandomAvailableValues.Returns(new List<int> { new Random().Next(1,9)});
+            return location;
         }
         public static Cell CreateCell(int initialValue)
         {

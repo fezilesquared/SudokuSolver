@@ -29,7 +29,8 @@ namespace PuzzleItems
                 for (var j = 0; j < 9; j++)
                 {
                     var cell = string.IsNullOrEmpty(puzzleString) ? GetCell(i, j) :
-                                                                   GetCell(i, j, parsedString[i, j]);
+                                                                  GetCell(i, j, parsedString[i, j]);
+                    cell.Puzzle = this;
                     Rows[i].Cells.Add(cell);
                     Columns[j].Cells.Add(cell);
                     AllCells.Add(cell);
@@ -49,7 +50,7 @@ namespace PuzzleItems
             return GetEndColumnRows(row);
         }
 
-        private static int GetEndColumnRows(int row)
+        private  int GetEndColumnRows(int row)
         {
             if (IsStart(row)) return 2;
             if (IsMiddle(row)) return 5;
@@ -57,26 +58,26 @@ namespace PuzzleItems
             return 8;//Is End
         }
 
-        private static int GetMiddleColumnRows(int row)
+        private  int GetMiddleColumnRows(int row)
         {
             if (IsStart(row)) return 1;
             if (IsMiddle(row)) return 4;
             return 7;//Is End
         }
 
-        private static int GetStartColumnRows(int row)
+        private  int GetStartColumnRows(int row)
         {
             if (IsStart(row)) return 0;
             if (IsMiddle(row)) return 3;
             return 6;//Is End
         }
 
-        private static bool IsMiddle(int rowOrColumnIndex)
+        private  bool IsMiddle(int rowOrColumnIndex)
         {
             return rowOrColumnIndex >= 3 && rowOrColumnIndex < 6;
         }
 
-        private static bool IsStart(int rowOrColumnIndex)
+        private  bool IsStart(int rowOrColumnIndex)
         {
             return rowOrColumnIndex < 3;
         }
@@ -89,7 +90,7 @@ namespace PuzzleItems
             return new Cell(new Location(Rows[i], Columns[j]), initialValue.GetValueOrDefault());
         }
 
-        public static int[,] ParseString(string puzzleString)
+        public static  int[,] ParseString(string puzzleString)
         {
             var parsedInput = new int[9, 9];
             if (puzzleString == null) return parsedInput;
@@ -103,12 +104,12 @@ namespace PuzzleItems
             return parsedInput;
         }
 
-        private static int GetIntOrDefault(string i)
+        private  static int GetIntOrDefault(string i)
         {
             return i.Trim() == "_" ? 0 : int.Parse(i);
         }
 
-        private static CellCollection CreateCellCollection(int i)
+        private  CellCollection CreateCellCollection(int i)
         {
             return new CellCollection(i.ToString());
         }
@@ -120,13 +121,62 @@ namespace PuzzleItems
 
         public void InsertGuesses()
         {
-            foreach (var cell in AllCells)
-                cell.InsertGuess();
+            var radomlyOrderedNonInitialCells = AllCells.Where(c => !c.IsInitialCell);///.OrderBy(c => new Random().Next());
+            foreach (var cell in radomlyOrderedNonInitialCells)
+                cell.InsertGuess();            
+        }
+
+        public string GetPuzzleAsString()
+        {
+            var puzzleAsString = "";
+            for(var i = 0; i < 9; i++) 
+            {
+                for (var j = 0; j < 9; j++)
+                {
+                    puzzleAsString += Rows[i].Cells[j].Value + ",";
+                }
+                puzzleAsString += "\n";
+            }
+            return puzzleAsString;               
+                    
         }
 
         public bool IsValid()
         {
-            return Rows.All(row => row.IsValid());
+            return Rows.All(CellCollectionIsValid) 
+                   && Columns.All(CellCollectionIsValid)
+                   && Groups.All(CellCollectionIsValid);
+        }
+
+        private  bool CellCollectionIsValid(CellCollection collection) => collection.IsValid();
+
+        public void Solve()
+        {
+            Int64 numberOfGuesses = 0;
+            while (!IsValid())
+            {
+                try
+                {
+                ClearGuesses();
+                InsertGuesses();
+
+                }
+                catch
+                {
+                    var r = GetPuzzleAsString();
+                }
+                finally
+                {
+                numberOfGuesses++;
+
+                }
+            }
+        }
+
+        private void ClearGuesses()
+        {
+            foreach (var cell in AllCells.Where(c => !c.IsInitialCell))
+                cell.ClearGuess();
         }
     }
 }
