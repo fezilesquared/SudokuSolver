@@ -42,26 +42,35 @@ namespace PuzzleItems
         }
         private int GetGroupIndex(int row, int column)
         {
-            if (IsStart(column))
-            {
-                if (IsStart(row)) return 0;
-                if (IsMiddle(row)) return 3;
-                return 6;//Is End
-            }
-            if (IsMiddle(column))
-            {
-                if (IsStart(row)) return 1;
-                if (IsMiddle(row)) return 4;
-                return 7;//Is End
-            }
-            //Is End
+            if (IsStart(column))  return GetStartColumnRows(row);
+            
+            if (IsMiddle(column)) return GetMiddleColumnRows(row);            
+  
+            return GetEndColumnRows(row);
+        }
+
+        private static int GetEndColumnRows(int row)
+        {
             if (IsStart(row)) return 2;
             if (IsMiddle(row)) return 5;
-            
+
             return 8;//Is End
         }
 
-        
+        private static int GetMiddleColumnRows(int row)
+        {
+            if (IsStart(row)) return 1;
+            if (IsMiddle(row)) return 4;
+            return 7;//Is End
+        }
+
+        private static int GetStartColumnRows(int row)
+        {
+            if (IsStart(row)) return 0;
+            if (IsMiddle(row)) return 3;
+            return 6;//Is End
+        }
+
         private static bool IsMiddle(int rowOrColumnIndex)
         {
             return rowOrColumnIndex >= 3 && rowOrColumnIndex < 6;
@@ -108,5 +117,16 @@ namespace PuzzleItems
         public List<CellCollection> Columns { get; }
         public List<CellCollection> Groups { get; }
         public List<Cell> AllCells { get; }
+
+        public void InsertGuesses()
+        {
+            foreach (var cell in AllCells)
+                cell.InsertGuess();
+        }
+
+        public bool IsValid()
+        {
+            return Rows.All(row => row.IsValid());
+        }
     }
 }

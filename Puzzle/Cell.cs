@@ -15,7 +15,7 @@ namespace PuzzleItems
         {
             Location = location;
             Value = value;
-            IsInitialCell = true;
+            IsInitialCell = value != 0;
         }
 
         public Location Location { get; }
@@ -35,7 +35,7 @@ namespace PuzzleItems
         {
             if (IsInitialCell) return;
 
-            Value = new Random().Next();
+            Value = new Random().Next(1,9);
         }
     }
 }

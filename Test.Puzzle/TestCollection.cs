@@ -52,6 +52,27 @@ namespace Test.TestPuzzle
             Assert.IsFalse(result);
         }
 
-        
+        [Test]
+        public void IsValid_GivenCollectionWithWithoutAllCellsWithValues1to9WithDuplicateValues_ReturnFalse()
+        {
+
+            var sut = new CellCollection("");
+            sut.Cells.Add(TestUtilities.CreateCell(1));
+            sut.Cells.Add(TestUtilities.CreateCell(2));
+            sut.Cells.Add(TestUtilities.CreateCell(3));
+            sut.Cells.Add(TestUtilities.CreateCell(4));
+            sut.Cells.Add(TestUtilities.CreateCell(4));
+
+            sut.Cells.Add(TestUtilities.CreateCell(6));
+            sut.Cells.Add(TestUtilities.CreateCell(7));
+            sut.Cells.Add(TestUtilities.CreateCell(7));
+
+            sut.Cells.Add(TestUtilities.CreateCell(9));
+
+            var result = sut.IsValid();
+            Assert.IsFalse(result);
+        }
+
+
     }
 }

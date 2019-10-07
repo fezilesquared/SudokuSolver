@@ -24,6 +24,15 @@ namespace Test.TestPuzzle
         }
         
         [Test]
+        public void Constructor_GivenValueAsInputAs0_ShouldSetIsInitialCellToFalse()
+        {     
+
+            var result = TestUtilities.CreateCell(0);
+
+            Assert.IsFalse(result.IsInitialCell);
+        }
+        
+        [Test]
         public void Constructor_GivenNoInput_ShouldSetIsInitialCellToFalse()
         {
             var result = TestUtilities.CreateCell();
@@ -57,6 +66,35 @@ namespace Test.TestPuzzle
             var result = cell.Value;
 
             Assert.AreNotEqual(expected, result);
+        }
+
+        [Test]
+        public void InsertGuess_GivenCellIsNotTInitialCell_ShouldChangeValueToAValueGreaterThanZero()
+        {
+            var cell = TestUtilities.GetNonInitialCell();
+            Assert.IsFalse(cell.IsInitialCell);
+            var expected = cell.Value;
+
+            cell.InsertGuess();
+
+            var result = cell.Value;
+
+            Assert.IsTrue(result > 0);
+        }
+
+
+        [Test]
+        public void InsertGuess_GivenCellIsNotTInitialCell_ShouldChangeValueToAValueLessThanTen()
+        {
+            var cell = TestUtilities.GetNonInitialCell();
+            Assert.IsFalse(cell.IsInitialCell);
+            var expected = cell.Value;
+
+            cell.InsertGuess();
+
+            var result = cell.Value;
+
+            Assert.IsTrue(result < 10);
         }
 
 
