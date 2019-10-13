@@ -7,7 +7,7 @@ namespace PuzzleItems
 {
     public class CellCollection
     {
-        private readonly int[] RequiredValues = new int[]{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        private readonly IEnumerable<int> RequiredValues = new HashSet<int>{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         public CellCollection(string name)
         {
             Name = name;
@@ -16,12 +16,12 @@ namespace PuzzleItems
         public string Name { get; }
         public List<Cell> Cells { get; }
  
-        public List<int> GetCellValues() => Cells.Select(c => c.Value).ToList();
-        public List<int> AvailableCellValues => RequiredValues.Except(GetCellValues()).ToList();
+        public IEnumerable<int> GetCellValues() => Cells.Select(c => c.Value);
+        public IEnumerable<int> AvailableCellValues => RequiredValues.Except(GetCellValues());
 
         public virtual bool IsValid()
         {
-            return RequiredValues.ToList().All(v => GetCellValues().Contains(v));
+            return RequiredValues.Intersect(GetCellValues()).Count() == 9;
         }
     }
 }

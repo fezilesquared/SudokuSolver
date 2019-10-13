@@ -2,6 +2,7 @@
 using PuzzleItems;
 using System;
 using System.Collections.Generic;
+using Base;
 
 namespace TestBase
 {
@@ -9,13 +10,13 @@ namespace TestBase
     {
         public static int GenerateRandomInt(int min = 0, int max= 1000)
         {
-            return (new Random()).Next(min, max);
+            return Utilities.GenerateRandomInteger(min, max);
         }
 
         public static Location CreateLocation()
         {
             var location = Substitute.For<Location>(Substitute.For<CellCollection>(""), Substitute.For<CellCollection>(""));
-            location.RandomAvailableValues.Returns(new List<int> { new Random().Next(1,9)});
+            location.GetRandomAvailableValue().Returns(1);
             return location;
         }
         public static Cell CreateCell(int initialValue)

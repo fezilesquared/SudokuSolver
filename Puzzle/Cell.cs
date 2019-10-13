@@ -32,23 +32,22 @@ namespace PuzzleItems
 
         public bool IsInitialCell { get; }
 
-        public void InsertGuess()
+        public bool InsertGuess()
         {
-            if (IsInitialCell) return;
+            if (IsInitialCell) return true;
 
-            Value = GetGuess();
+            var guess = GetGuess();
+            if (guess == -1) return false;
+
+            Value = guess;
+            return true;
         }
 
-        private int GetGuess()
+        private int GetGuess() => GetRandomAvailableValue();
+    
+        private int GetRandomAvailableValue()
         {
-            try {
-                return (Location?.RandomAvailableValues.First()).GetValueOrDefault();
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }       
-            //return guess == 0 ? -1: guess;
+            return (Location?.GetRandomAvailableValue()).GetValueOrDefault();
         }
 
         internal void ClearGuess()

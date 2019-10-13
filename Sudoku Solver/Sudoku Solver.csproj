@@ -6,4 +6,9 @@
     <RootNamespace>Soduku_Solver</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Puzzle\Puzzle.csproj" />
+    <ProjectReference Include="..\Sudoku Solver.Base\Sudoku Solver.Base.csproj" />
+  </ItemGroup>
+
 </Project>

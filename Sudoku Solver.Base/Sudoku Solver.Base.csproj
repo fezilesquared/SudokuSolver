@@ -2,10 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>Sudoku_Solver.Base</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Sudoku Solver.Base\Sudoku Solver.Base.csproj" />
-  </ItemGroup>
 
 </Project>

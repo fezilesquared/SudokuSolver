@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Sudoku_Solver.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PuzzleItems
 {
@@ -40,7 +42,9 @@ namespace PuzzleItems
                     Groups[k].Cells.Add(cell);
                     
                 }
+            NonInitialCells = AllCells.Where(cell => !cell.IsInitialCell);
         }
+        IEnumerable<Cell> NonInitialCells;
         private int GetGroupIndex(int row, int column)
         {
             if (IsStart(column))  return GetStartColumnRows(row);
@@ -121,10 +125,15 @@ namespace PuzzleItems
 
         public void InsertGuesses()
         {
-            var radomlyOrderedNonInitialCells = AllCells.Where(c => !c.IsInitialCell);///.OrderBy(c => new Random().Next());
-            foreach (var cell in radomlyOrderedNonInitialCells)
-                cell.InsertGuess();            
+
+            foreach (var cell in NonInitialCells)
+            {
+                var puzzleStateInvalid = !cell.InsertGuess();
+                if (puzzleStateInvalid) break;
+            }
         }
+
+
 
         public string GetPuzzleAsString()
         {
@@ -140,6 +149,21 @@ namespace PuzzleItems
             return puzzleAsString;               
                     
         }
+        
+        public void Print()
+        {
+            for(var i = 0; i < 9; i++) 
+            {
+                var lineToPrint = "";
+
+                for (var j = 0; j < 9; j++)
+                {
+                    lineToPrint += Rows[i].Cells[j].Value + ",";
+                }
+             
+                Console.WriteLine($"{lineToPrint}\n");
+            }                    
+        }
 
         public bool IsValid()
         {
@@ -150,32 +174,23 @@ namespace PuzzleItems
 
         private  bool CellCollectionIsValid(CellCollection collection) => collection.IsValid();
 
-        public void Solve()
+        public int Solve()
         {
-            Int64 numberOfGuesses = 0;
+
+            var numberOfPuzzleGuesses = 0;
             while (!IsValid())
             {
-                try
-                {
+                numberOfPuzzleGuesses++;
                 ClearGuesses();
-                InsertGuesses();
-
-                }
-                catch
-                {
-                    var r = GetPuzzleAsString();
-                }
-                finally
-                {
-                numberOfGuesses++;
-
-                }
+                InsertGuesses();     
             }
+
+            return numberOfPuzzleGuesses;            
         }
 
         private void ClearGuesses()
         {
-            foreach (var cell in AllCells.Where(c => !c.IsInitialCell))
+            foreach (var cell in NonInitialCells)
                 cell.ClearGuess();
         }
     }
