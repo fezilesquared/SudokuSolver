@@ -136,7 +136,7 @@ namespace Test.TestPuzzle
         }
 
         [Test]
-        public void IsValid_GivenPuzzleWithAnInvalidRow_ShouldReturnValid()
+        public void IsValid_GivenPuzzleWithAnInvalidRow_ShouldReturnFalse()
         {
             var sut = new Puzzle();
 
@@ -174,7 +174,7 @@ namespace Test.TestPuzzle
         } 
         
         [Test]
-        public void IsValid_GivenPuzzleWithAnInvalidColumn_ShouldReturnValid()
+        public void IsValid_GivenPuzzleWithAnInvalidColumn_ShouldReturnFalse()
         {
             var sut = new Puzzle();
 
@@ -211,7 +211,7 @@ namespace Test.TestPuzzle
             Assert.IsFalse(sut.IsValid());
         }
         [Test]
-        public void IsValid_GivenPuzzleWithAnInvalidGroup_ShouldReturnValid()
+        public void IsValid_GivenPuzzleWithAnInvalidGroup_ShouldReturnFalse()
         {
             var sut = new Puzzle();
 
